@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  getIdToken,
   updateProfile,
 } from "firebase/auth";
 import initializeFirebase from "../pages/Login/Firebase/firebase.init";
@@ -55,7 +56,7 @@ const useFirebase = () => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        // const user = userCredential.user;
         // add user displayName
         addDisplayName(displayName);
 
@@ -116,7 +117,7 @@ const useFirebase = () => {
   //## user information sent to database
   const saveToDatabase = (user, method) => {
     user.createdAt = new Date();
-    fetch("http://localhost:5000/users", {
+    fetch("https://fierce-forest-16777.herokuapp.com/users", {
       method: method,
       headers: {
         "content-type": "application/json",
@@ -136,6 +137,9 @@ const useFirebase = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        getIdToken(user).then((idToken) => {
+          localStorage.setItem("idToken", idToken);
+        });
       } else {
         setUser({});
       }

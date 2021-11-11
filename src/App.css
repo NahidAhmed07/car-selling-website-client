@@ -6,3 +6,16 @@
 .hero {
   overflow-x: hidden !important;
 }
+
+.order-pending {
+  background: #1976d2;
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: white;
+}
+.order-shipped {
+  background: #077410;
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: white;
+}

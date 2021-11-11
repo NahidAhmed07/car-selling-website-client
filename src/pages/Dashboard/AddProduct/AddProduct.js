@@ -30,7 +30,7 @@ const AddProduct = () => {
       productInfo.rating = 5;
     }
     axios
-      .post("http://localhost:5000/addProduct", productInfo)
+      .post("https://fierce-forest-16777.herokuapp.com/addProduct", productInfo)
       .then((res) => {
         if (res.data.insertedId) {
           swal(`Successful`, "product Added Successfully ", "success");

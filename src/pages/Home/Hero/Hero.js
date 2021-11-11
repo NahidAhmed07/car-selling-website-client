@@ -1,4 +1,3 @@
-import { Container } from "@material-ui/core";
 import { Box } from "@mui/system";
 import React from "react";
 import { Carousel } from "react-carousel-minimal";

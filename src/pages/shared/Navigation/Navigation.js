@@ -126,7 +126,7 @@ const Navigation = (props) => {
                 <MenuItem
                   onClick={() => setAnchor(null)}
                   component={Link}
-                  to="/more_car"
+                  to="/moreCar"
                 >
                   <Typography variant="h6"> More Car </Typography>
                 </MenuItem>
@@ -161,7 +161,7 @@ const Navigation = (props) => {
               <Button
                 variant="text"
                 component={Link}
-                to="/more_car"
+                to="/moreCar"
                 style={navItem}
               >
                 More Car

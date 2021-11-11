@@ -4,30 +4,59 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { Box } from "@mui/system";
+import StarIcon from "@mui/icons-material/Star";
+import { Link } from "react-router-dom";
 
-const ProductCard = () => {
+const ratingStyle = {
+  fontSize: "18px",
+  color: "goldenrod",
+};
+
+const ProductCard = ({ product }) => {
+  const { img, productName, price, description, rating, _id } = product;
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, textAlign: "left" }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="200"
-          image="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2020-ford-explorer-st-106-1567185384.jpg?crop=0.694xw:0.694xh;0.0680xw,0.237xh&resize=980:*"
+          image={img}
           alt="green iguana"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {productName}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h6" gutterBottom component="h3">
+              $ {price}
+            </Typography>
+            <Typography variant="body1">
+              {[...Array(parseInt(rating)).keys()].map((index) => (
+                <StarIcon sx={ratingStyle} key={index} />
+              ))}{" "}
+              ({rating} reviews)
+            </Typography>
+          </Box>
+          <Typography variant="body1" color="text.secondary">
+            {description
+              ?.split(" ")
+              ?.slice(0, 18)
+              ?.toString()
+              ?.replace(/,/g, " ")}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
+        <Button variant="contained" component={Link} to={`/product/${_id}`}>
+          buy now
         </Button>
       </CardActions>
     </Card>

@@ -30,6 +30,7 @@ import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AddReviews from "../AddReviews/AddReviews";
+import MyOrders from "../MyOrders/MyOrders";
 
 const drawerWidth = 240;
 
@@ -48,7 +49,7 @@ function Dashboard(props) {
       <Divider />
       <List>
         {/* list item 1  */}
-        <ListItem button component={Link} to={url}>
+        <ListItem button component={Link} to={`${url}/myOrder`}>
           <ListItemIcon sx={{ minWidth: 35 }}>
             <BorderAllIcon />
           </ListItemIcon>
@@ -191,6 +192,7 @@ function Dashboard(props) {
       >
         <Switch>
           <Route exact path={path} component={DashboardHome} />
+          <Route path={`${path}/myOrder`} component={MyOrders} />
           <Route path={`${path}/make_admin`} component={MakeAdmin} />
           <Route path={`${path}/add_product`} component={AddProduct} />
           <Route path={`${path}/manage_order`} component={ManageOrder} />
