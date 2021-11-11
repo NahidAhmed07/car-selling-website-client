@@ -3,7 +3,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import useAuth from "../../../hook/useAuth";
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
+import avatar from "../../../images/avater2.png";
 
 const style = {
   position: "absolute",
@@ -26,10 +27,11 @@ const UserModal = ({ open, handleClose }) => {
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <img
-            src={user.photoURL}
+            src={user.photoURL || avatar}
             alt=""
-            style={{ borderRadius: "100%", margin: "0 auto" }}
+            style={{ borderRadius: "100%", margin: "0 auto", width: "100px" }}
           />
+          <hr />
           <Typography variant="h6" sx={{ mt: "10px" }} component="h2">
             {user.displayName}
           </Typography>

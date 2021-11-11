@@ -9,7 +9,7 @@ import {
   Menu,
   MenuItem,
   ListItemIcon,
-} from "@material-ui/core";
+} from "@mui/material";
 import avatar from "../../../images/avater2.png";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
@@ -70,7 +70,12 @@ const Navigation = (props) => {
           >
             <img
               src={user.photoURL || avatar}
-              style={{ width: "50px", borderRadius: "100%", marginTop: "5px" }}
+              style={{
+                width: "50px",
+                borderRadius: "100%",
+                marginTop: "5px",
+                cursor: "pointer",
+              }}
               onClick={handleOpen}
               alt=""
             />
@@ -179,7 +184,8 @@ const Navigation = (props) => {
                     style={{
                       width: "50px",
                       borderRadius: "100%",
-                      marginTop: "5px",
+                      margin: "5px 0",
+                      cursor: "pointer",
                     }}
                     onClick={handleOpen}
                     alt=""
