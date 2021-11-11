@@ -64,7 +64,7 @@ const useFirebase = () => {
         setUser(newUser);
         saveToDatabase(newUser, "POST");
         history.push(location?.state?.from || "/");
-        swal(`Hi ! ${user.displayName}`, "Registration Successful", "success");
+        swal(`Hi ! ${displayName}`, "Registration Successful", "success");
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -115,6 +115,7 @@ const useFirebase = () => {
 
   //## user information sent to database
   const saveToDatabase = (user, method) => {
+    user.createdAt = new Date();
     fetch("http://localhost:5000/users", {
       method: method,
       headers: {

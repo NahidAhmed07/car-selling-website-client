@@ -6,21 +6,37 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { Button } from "@mui/material";
+import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import DashboardHome from "../DashboardHome/DashboardHome";
+import MakeAdmin from "../MakeAdmin/MakeAdmin";
+import AddProduct from "../AddProduct/AddProduct";
+import ManageOrder from "../ManageOrder/ManageOrder";
+import ManageUser from "../ManageUser/ManageUser";
+import BorderAllIcon from "@mui/icons-material/BorderAll";
+import PaymentIcon from "@mui/icons-material/Payment";
+import MakePayment from "../MakePayment/MakePayment";
+import ReviewsIcon from "@mui/icons-material/Reviews";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import AddTaskIcon from "@mui/icons-material/AddTask";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AddReviews from "../AddReviews/AddReviews";
 
 const drawerWidth = 240;
 
 function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  let { path, url } = useRouteMatch();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -31,14 +47,62 @@ function Dashboard(props) {
       <Toolbar />
       <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        {/* list item 1  */}
+        <ListItem button component={Link} to={url}>
+          <ListItemIcon sx={{ minWidth: 35 }}>
+            <BorderAllIcon />
+          </ListItemIcon>
+          <ListItemText primary="My Orders" />
+        </ListItem>
+        {/* list item 3  */}
+        <ListItem button component={Link} to={`${url}/payment`}>
+          <ListItemIcon sx={{ minWidth: 35 }}>
+            <PaymentIcon />
+          </ListItemIcon>
+          <ListItemText primary="Make Payment" />
+        </ListItem>
+        {/* list item 3  */}
+        <ListItem button component={Link} to={`${url}/reviews`}>
+          <ListItemIcon sx={{ minWidth: 35 }}>
+            <ReviewsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Review" />
+        </ListItem>
+        {/* list item 2  */}
+        <ListItem button component={Link} to={`${url}/make_admin`}>
+          <ListItemIcon sx={{ minWidth: 35 }}>
+            <AdminPanelSettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Make Admin" />
+        </ListItem>
+        {/* list item 2  */}
+        <ListItem button component={Link} to={`${url}/manage_order`}>
+          <ListItemIcon sx={{ minWidth: 35 }}>
+            <AppRegistrationIcon />
+          </ListItemIcon>
+          <ListItemText primary="Manage All Order" />
+        </ListItem>
+        {/* list item 2  */}
+        <ListItem button component={Link} to={`${url}/manage_user`}>
+          <ListItemIcon sx={{ minWidth: 35 }}>
+            <ManageAccountsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Manage AlL User" />
+        </ListItem>
+        {/* list item 2  */}
+        <ListItem button component={Link} to={`${url}/add_product`}>
+          <ListItemIcon sx={{ minWidth: 35 }}>
+            <AddTaskIcon />
+          </ListItemIcon>
+          <ListItemText primary="Add New Product" />
+        </ListItem>
+        {/* list item 2  */}
+        <ListItem button>
+          <ListItemIcon sx={{ minWidth: 35 }}>
+            <LogoutIcon />
+          </ListItemIcon>
+          <ListItemText primary="Logout" />
+        </ListItem>
       </List>
     </div>
   );
@@ -69,6 +133,14 @@ function Dashboard(props) {
           <Typography variant="h6" noWrap component="div">
             Dashboard
           </Typography>
+          <Button
+            variant="text"
+            component={Link}
+            to="/"
+            style={{ color: "white", marginLeft: "5%" }}
+          >
+            Back to Home
+          </Button>
         </Toolbar>
       </AppBar>
       <Box
@@ -76,7 +148,6 @@ function Dashboard(props) {
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
           variant="temporary"
@@ -114,12 +185,19 @@ function Dashboard(props) {
         sx={{
           flexGrow: 1,
           p: 3,
+          mt: 8,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-        </Typography>
+        <Switch>
+          <Route exact path={path} component={DashboardHome} />
+          <Route path={`${path}/make_admin`} component={MakeAdmin} />
+          <Route path={`${path}/add_product`} component={AddProduct} />
+          <Route path={`${path}/manage_order`} component={ManageOrder} />
+          <Route path={`${path}/manage_user`} component={ManageUser} />
+          <Route path={`${path}/payment`} component={MakePayment} />
+          <Route path={`${path}/reviews`} component={AddReviews} />
+        </Switch>
       </Box>
     </Box>
   );
