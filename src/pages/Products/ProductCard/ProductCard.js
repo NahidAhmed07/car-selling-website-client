@@ -41,7 +41,7 @@ const ProductCard = ({ product }) => {
             <Typography variant="body1">
               {[...Array(parseInt(rating)).keys()].map((index) => (
                 <StarIcon sx={ratingStyle} key={index} />
-              ))}{" "}
+              ))}
               ({rating} reviews)
             </Typography>
           </Box>

@@ -75,7 +75,7 @@ const MyOrders = () => {
         </Typography>
       </Box>
 
-      <Grid container>
+      <Grid container spacing={4}>
         {orders.length > 0 ? (
           orders.map((order) => (
             <Grid item xs={12} md={6} lg={4} key={order._id}>

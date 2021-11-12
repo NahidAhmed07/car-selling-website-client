@@ -31,6 +31,7 @@ import AddTaskIcon from "@mui/icons-material/AddTask";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AddReviews from "../AddReviews/AddReviews";
 import MyOrders from "../MyOrders/MyOrders";
+import useAuth from "../../../hook/useAuth";
 
 const drawerWidth = 240;
 
@@ -38,6 +39,7 @@ function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   let { path, url } = useRouteMatch();
+  const { logout } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -98,7 +100,7 @@ function Dashboard(props) {
           <ListItemText primary="Add New Product" />
         </ListItem>
         {/* list item 2  */}
-        <ListItem button>
+        <ListItem button onClick={logout}>
           <ListItemIcon sx={{ minWidth: 35 }}>
             <LogoutIcon />
           </ListItemIcon>

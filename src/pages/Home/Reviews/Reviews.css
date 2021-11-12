@@ -1,0 +1,51 @@
+.testimonial-main {
+  background-image: url("https://i.ibb.co/1Tggz6k/photo-1518987048-93e29699e79a.jpg");
+  background-color: rgba(0, 0, 0, 0.582);
+  min-height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+}
+.testimonial {
+  color: white;
+}
+
+.test-img {
+  height: 200px;
+}
+
+.test-img img {
+  height: 100%;
+  transform: translateY(-40%);
+  transition: 0.5s;
+}
+.test-card {
+  background: white;
+  overflow: hidden;
+}
+
+.test-card:hover .test-img img {
+  transform: translateY(0);
+}
+.test-card:hover .test-circle-img {
+  top: 20px;
+}
+
+.test-circle-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 30px;
+  transition: 0.4s;
+  left: calc(50% - 75px);
+}
+
+.test-text {
+  color: #404040;
+}
+.star-icon {
+  color: goldenrod;
+}

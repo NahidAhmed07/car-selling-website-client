@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, Typography } from "@mui/material";
+import { Button, CircularProgress, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -9,6 +9,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import ApprovalIcon from "@mui/icons-material/Approval";
+import DeleteIcon from "@mui/icons-material/Delete";
+import swal from "sweetalert";
+import { LoadingButton } from "@mui/lab";
 
 const ManageOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -23,6 +27,57 @@ const ManageOrder = () => {
       .catch((err) => console.log(err.message));
   }, []);
 
+  const handleApproved = (id) => {
+    axios
+      .put(`http://localhost:5000/order?id=${id}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          const findItem = orders.find((order) => order._id === id);
+          if (findItem) {
+            findItem.status = "approved";
+            const remaining = orders.filter((order) => !(order._id === id));
+
+            setOrders([findItem, ...remaining]);
+          }
+        } else {
+          swal({
+            title: "This Service Already Approved !",
+            icon: "warning",
+          });
+        }
+      })
+      .catch((err) => console.log(err.massage));
+  };
+
+  const handleDelete = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Delete This Order form Order list",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios
+          .delete(`http://localhost:5000/order?id=${id}`)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.deletedCount > 0) {
+              const remaining = orders.filter((order) => !(order._id === id));
+
+              setOrders(remaining);
+              swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+              });
+            }
+          })
+          .catch((err) => console.log(err.message));
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+  };
+
   return (
     <Box sx={{ textAlign: "left", mr: { xs: 0, md: 2, lg: 5, xl: 8 } }}>
       <Box sx={{ my: 5, borderBottom: "3px solid goldenrod", pb: 2 }}>
@@ -36,27 +91,52 @@ const ManageOrder = () => {
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Patient Name</TableCell>
-                <TableCell align="left">time</TableCell>
-                <TableCell align="left">Service Name</TableCell>
+                <TableCell align="left">User Name</TableCell>
+                <TableCell align="left">Product Name</TableCell>
+                <TableCell align="left">Order Date</TableCell>
+                <TableCell align="left">Status</TableCell>
                 <TableCell align="left">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {orders.length > 0 ? (
-                orders.map((order) => (
-                  <TableRow
-                    key={order._id}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {order.name}
-                    </TableCell>
-                    <TableCell align="left">{order.productName}</TableCell>
-                    <TableCell align="left">{order.status}</TableCell>
-                    <TableCell align="left">{"del/edit"}</TableCell>
-                  </TableRow>
-                ))
+                orders.map((order) => {
+                  return (
+                    <TableRow key={order._id}>
+                      <TableCell align="left">{order.name}</TableCell>
+                      <TableCell align="left">{order.productName}</TableCell>
+                      <TableCell align="left">
+                        {new Date(order.orderDate)?.toDateString()}
+                      </TableCell>
+                      <TableCell align="left">
+                        {order.status !== "Pending" ? (
+                          <span className="order-shipped">Shipped</span>
+                        ) : (
+                          <span className="order-pending">Pending...</span>
+                        )}
+                      </TableCell>
+                      <TableCell align="left">
+                        <Button
+                          variant="contained"
+                          onClick={() => handleApproved(order._id)}
+                        >
+                          <ApprovalIcon />
+                        </Button>
+
+                        <Button
+                          variant="contained"
+                          style={{
+                            backgroundColor: "#BC243E",
+                            marginLeft: "10px",
+                          }}
+                          onClick={() => handleDelete(order._id)}
+                        >
+                          <DeleteIcon />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })
               ) : (
                 <Grid item xs={12}>
                   <Box

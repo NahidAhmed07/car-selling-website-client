@@ -16,7 +16,7 @@ const AllProduct = ({ apiPath }) => {
   }, [apiPath]);
 
   return (
-    <Container sx={{ textAlign: "left" }}>
+    <Container sx={{ textAlign: "left", mb: 8 }}>
       <Box sx={{ my: 8, borderBottom: "3px solid goldenrod", pb: 2 }}>
         <Typography sx={{ fontWeight: "bold" }} variant="h3">
           Top Rated Car
