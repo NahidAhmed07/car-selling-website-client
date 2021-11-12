@@ -164,7 +164,7 @@ const Navigation = (props) => {
                 to="/moreCar"
                 style={navItem}
               >
-                More Car
+                Explore Car
               </Button>
               <Button variant="text" component={Link} to="/" style={navItem}>
                 About

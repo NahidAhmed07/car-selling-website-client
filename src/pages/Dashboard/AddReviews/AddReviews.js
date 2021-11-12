@@ -39,11 +39,11 @@ const AddReviews = () => {
     reviewData.email = user.email;
     reviewData.img = user.photoURL;
     axios
-      .post("http://localhost:5000/review", reviewData)
+      .post("https://fierce-forest-16777.herokuapp.com/review", reviewData)
       .then((res) => {
         if (res.data.insertedId) {
           swal(`Successful`, "Order Added Successfully ", "success");
-          history.push("/");
+          history.goBack();
         } else {
           swal(`Failed`, "Something went wrong ", "error");
         }

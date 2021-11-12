@@ -155,11 +155,14 @@ const useFirebase = () => {
   useEffect(() => {
     if (user.email) {
       setIsLoading(true);
-      fetch(`http://localhost:5000/admin?email=${user.email}`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("idToken")}`,
-        },
-      })
+      fetch(
+        `https://fierce-forest-16777.herokuapp.com/admin?email=${user.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("idToken")}`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           setIsAdmin(data.isAdmin);
@@ -168,7 +171,7 @@ const useFirebase = () => {
         .catch((err) => console.log(err.message))
         .finally(() => setIsLoading(false));
     }
-  }, [user]);
+  }, [user.email]);
 
   console.log(isAdmin);
   return {

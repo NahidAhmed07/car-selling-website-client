@@ -18,7 +18,7 @@ const ManageOrder = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/order")
+      .get("https://fierce-forest-16777.herokuapp.com/order")
       .then((res) => {
         setOrders(res.data);
         console.log(res.data);
@@ -28,7 +28,7 @@ const ManageOrder = () => {
 
   const handleApproved = (id) => {
     axios
-      .put(`http://localhost:5000/order?id=${id}`)
+      .put(`https://fierce-forest-16777.herokuapp.com/order?id=${id}`)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           const findItem = orders.find((order) => order._id === id);
@@ -58,7 +58,7 @@ const ManageOrder = () => {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`http://localhost:5000/order?id=${id}`)
+          .delete(`https://fierce-forest-16777.herokuapp.com/order?id=${id}`)
           .then((res) => {
             console.log(res.data);
             if (res.data.deletedCount > 0) {

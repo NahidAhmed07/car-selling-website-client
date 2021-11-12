@@ -19,7 +19,6 @@ import DashboardHome from "../DashboardHome/DashboardHome";
 import MakeAdmin from "../MakeAdmin/MakeAdmin";
 import AddProduct from "../AddProduct/AddProduct";
 import ManageOrder from "../ManageOrder/ManageOrder";
-import ManageUser from "../ManageUser/ManageUser";
 import BorderAllIcon from "@mui/icons-material/BorderAll";
 import PaymentIcon from "@mui/icons-material/Payment";
 import MakePayment from "../MakePayment/MakePayment";
@@ -35,6 +34,8 @@ import useAuth from "../../../hook/useAuth";
 import AdminRoute from "../../Login/AdminRoute/AdminRoute";
 import PrivateRoute from "../../Login/PrivateRoute/PrivateRoute";
 import HomeIcon from "@mui/icons-material/Home";
+import ManageProduct from "../ManageProduct/ManageProduct";
+import ProductEdit from "../ProductEdit/ProductEdit";
 
 const drawerWidth = 240;
 
@@ -90,12 +91,6 @@ function Dashboard(props) {
         {/* list item 2  */}
         {isAdmin && (
           <Box>
-            <ListItem button component={Link} to={`${url}/make_admin`}>
-              <ListItemIcon sx={{ minWidth: 35 }}>
-                <AdminPanelSettingsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Make Admin" />
-            </ListItem>
             {/* list item 2  */}
             <ListItem button component={Link} to={`${url}/manage_order`}>
               <ListItemIcon sx={{ minWidth: 35 }}>
@@ -104,11 +99,11 @@ function Dashboard(props) {
               <ListItemText primary="Manage All Order" />
             </ListItem>
             {/* list item 2  */}
-            <ListItem button component={Link} to={`${url}/manage_user`}>
+            <ListItem button component={Link} to={`${url}/manage_product`}>
               <ListItemIcon sx={{ minWidth: 35 }}>
                 <ManageAccountsIcon />
               </ListItemIcon>
-              <ListItemText primary="Manage AlL User" />
+              <ListItemText primary="Manage Products" />
             </ListItem>
             {/* list item 2  */}
             <ListItem button component={Link} to={`${url}/add_product`}>
@@ -116,6 +111,12 @@ function Dashboard(props) {
                 <AddTaskIcon />
               </ListItemIcon>
               <ListItemText primary="Add New Product" />
+            </ListItem>
+            <ListItem button component={Link} to={`${url}/make_admin`}>
+              <ListItemIcon sx={{ minWidth: 35 }}>
+                <AdminPanelSettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Make Admin" />
             </ListItem>
           </Box>
         )}
@@ -227,8 +228,11 @@ function Dashboard(props) {
             <ManageOrder></ManageOrder>
           </AdminRoute>
 
-          <AdminRoute path={`${path}/manage_user`}>
-            <ManageUser></ManageUser>
+          <AdminRoute path={`${path}/manage_product`}>
+            <ManageProduct url={url}></ManageProduct>
+          </AdminRoute>
+          <AdminRoute path={`${path}/product_edit/:id`}>
+            <ProductEdit></ProductEdit>
           </AdminRoute>
           <PrivateRoute path={`${path}/payment`}>
             <MakePayment></MakePayment>

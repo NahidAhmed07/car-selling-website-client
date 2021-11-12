@@ -16,7 +16,7 @@ const MakeAdmin = () => {
   const handleSubmit = (e) => {
     setIsAdding(true);
 
-    fetch(`http://localhost:5000/addAdmin?email=${email}`, {
+    fetch(`https://fierce-forest-16777.herokuapp.com/addAdmin?email=${email}`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${localStorage.getItem("idToken")}`,

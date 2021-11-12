@@ -19,3 +19,21 @@
   border-radius: 4px;
   color: white;
 }
+
+.edit-form {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.edit-form input,
+textarea {
+  display: block;
+  padding: 8px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.edit-form input,
+textarea:focus {
+  outline: none;
+}

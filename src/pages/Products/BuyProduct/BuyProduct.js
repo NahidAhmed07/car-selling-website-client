@@ -9,7 +9,7 @@ import {
 import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import Navigation from "../../shared/Navigation/Navigation";
 import StarIcon from "@mui/icons-material/Star";
 import swal from "sweetalert";
@@ -31,6 +31,7 @@ const BuyProduct = () => {
   const [orderInfo, setOrderInfo] = useState({});
   const [isAdding, setIsAdding] = useState(false);
   const { user } = useAuth();
+  const history = useHistory();
 
   const handleOnBlur = (e) => {
     const field = e.target.name;
@@ -56,6 +57,7 @@ const BuyProduct = () => {
       .post("https://fierce-forest-16777.herokuapp.com/orders", orderInfo)
       .then((res) => {
         if (res.data.insertedId) {
+          history.goBack();
           swal(`Successful`, "Order Added Successfully ", "success");
         } else {
           swal(`Failed`, "Something went wrong ", "error");
@@ -115,7 +117,7 @@ const BuyProduct = () => {
               <Typography variant="body1">
                 {[...Array(parseInt(rating || 4)).keys()].map((index) => (
                   <StarIcon sx={ratingStyle} key={index} />
-                ))}{" "}
+                ))}
                 ({rating} reviews)
               </Typography>
             </Box>

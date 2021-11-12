@@ -35,7 +35,7 @@ const MyOrders = () => {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`http://localhost:5000/order?id=${id}`)
+          .delete(`https://fierce-forest-16777.herokuapp.com/order?id=${id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
               swal("Poof! Your imaginary file has been deleted!", {
