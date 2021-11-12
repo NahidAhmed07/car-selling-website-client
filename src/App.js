@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home/Home";
 import Login from "./pages/Login/Login/Login";
 import PrivateRoute from "./pages/Login/PrivateRoute/PrivateRoute";
 import Register from "./pages/Login/Register/Register";
+import NotFound from "./pages/NotFound/NotFound";
 import BuyProduct from "./pages/Products/BuyProduct/BuyProduct";
 import Products from "./pages/Products/Products/Products";
 
@@ -26,6 +27,7 @@ function App() {
             <PrivateRoute path="/product/:id">
               <BuyProduct></BuyProduct>
             </PrivateRoute>
+            <Route path="*" component={NotFound} />
           </Switch>
         </BrowserRouter>
       </AuthProvider>

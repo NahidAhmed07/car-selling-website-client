@@ -1,0 +1,58 @@
+.footer {
+  background: #223645;
+  color: white;
+}
+
+.useful-links {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 20px;
+  row-gap: 10px;
+
+  padding: 0;
+}
+
+.useful-links li {
+  list-style: none;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.useful-links li a {
+  transition: 0.3s;
+}
+.useful-links li a:hover {
+  color: #0094ca;
+}
+
+.useful-links li a {
+  text-decoration: none;
+  color: rgb(211, 210, 210);
+}
+
+.useful-links li:hover {
+  color: white;
+  padding-left: 5px;
+}
+
+.email,
+.phone {
+  color: #04afef;
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+.footerGallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 15px;
+  column-gap: 8px;
+}
+
+.gallery-img {
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.gallery-img:hover {
+  transform: scale(1.1);
+}

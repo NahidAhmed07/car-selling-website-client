@@ -1,78 +1,62 @@
+import { Button, Container, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { Carousel } from "react-carousel-minimal";
+import useCounter from "../../../hook/useCounter";
+import { imageArray } from "../../../utilities/utilities";
+import "./Hero.css";
 
 const Hero = () => {
-  const data = [
-    {
-      image: "https://i.ibb.co/VQV56gT/slider1.jpg",
-      caption: `<div className="slider-cap">
-                
-                  <h2>MODREN-CLASSIC</h2>
-                  
-                </div>`,
-    },
-    {
-      image: "https://i.ibb.co/v1r6f53/slider2.jpg",
-      caption: `<div className="slider-cap">
-                  
-                  <h2>MODREN-CLASSIC</h2>
-                  
-                </div>`,
-    },
-    {
-      image: "https://i.ibb.co/98KtKjM/slider3.jpg",
-      caption: `<div className="slider-cap">
-                
-                  <h2>MODREN-CLASSIC</h2>
-                  
-                </div>`,
-    },
-  ];
+  const [counter] = useCounter(0, imageArray.length);
+  const heroBannerStyle = {
+    backgroundImage: `url(${imageArray[counter]})`,
+    transition: "all 1.5s ease",
+  };
 
-  const captionStyle = {
-    fontWeight: "bold",
-    fontSize: "3rem",
-    marginTop: "-60px",
+  const textBoxStyle = {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "white",
   };
-  const slideNumberStyle = {
-    fontSize: "20px",
-    fontWeight: "bold",
-  };
+
   return (
-    <Box
-      className="hero"
-      style={{
-        width: "100vw",
-        height: "100vh",
-        marginTop: "55px",
-        overflowX: "hidden",
-      }}
+    <div
+      className="hero-banner container-fluid text-white"
+      style={heroBannerStyle}
+      id="hero"
     >
-      <Carousel
-        data={data}
-        time={5000}
-        width="100vw"
-        height="93vh"
-        captionStyle={captionStyle}
-        radius="0px"
-        slideNumberStyle={slideNumberStyle}
-        captionPosition="center"
-        automatic={true}
-        dots={true}
-        pauseIconColor="white"
-        pauseIconSize="40px"
-        slideBackgroundColor="darkgrey"
-        slideImageFit="cover"
-        thumbnails={false}
-        thumbnailWidth="100px"
-        showNavBtn={true}
-        style={{
-          textAlign: "center",
-          Width: "100vw",
-        }}
-      />
-    </Box>
+      <Container sx={{ height: "100%" }}>
+        <Grid container sx={{ height: "100%" }}>
+          {/* hero text  */}
+          <Grid item xs={12} md={9} lg={6} sx={{ textAlign: "left" }}>
+            <Box sx={textBoxStyle} className="hero-text">
+              <Typography
+                variant="h2"
+                sx={{ fontSize: { sx: 30, md: 40, lg: 60 } }}
+              >
+                <span style={{ color: "#BC243E" }}>POWER</span> & BEAUTY
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{ display: { xs: "none", md: "block" } }}
+              >
+                Free Library’s $1M auto archives are moving to Philly’s
+                world-famous car museum and to a Hershey attraction
+              </Typography>
+              <br />
+              <Box>
+                <Button variant="contained" sx={{ mr: 4 }}>
+                  GET STARTED
+                </Button>
+                <Button variant="contained">CONTACT</Button>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </div>
   );
 };
 

@@ -16,7 +16,10 @@ const ratingStyle = {
 const ProductCard = ({ product }) => {
   const { img, productName, price, description, rating, _id } = product;
   return (
-    <Card sx={{ maxWidth: 345, textAlign: "left" }}>
+    <Card
+      style={{ margin: "0 auto" }}
+      sx={{ maxWidth: 345, textAlign: "left" }}
+    >
       <CardActionArea>
         <CardMedia
           component="img"

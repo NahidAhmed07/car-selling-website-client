@@ -154,17 +154,14 @@ function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography
+            variant="h6"
+            sx={{ textAlign: "center", width: "100%" }}
+            noWrap
+            component="div"
+          >
             Dashboard
           </Typography>
-          <Button
-            variant="text"
-            component={Link}
-            to="/"
-            style={{ color: "white", marginLeft: "5%" }}
-          >
-            Back to Home
-          </Button>
         </Toolbar>
       </AppBar>
       <Box

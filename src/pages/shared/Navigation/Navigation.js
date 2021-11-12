@@ -56,29 +56,20 @@ const Navigation = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar style={{ backgroundColor: "#23292E", color: "white" }}>
-        <Toolbar>
-          <Box
-            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
-          >
+      <AppBar style={{ backgroundColor: "#223645", color: "white" }}>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             <img style={{ width: 100, marginLeft: "30px" }} src={logo} alt="" />
 
-            <Typography variant="h4">ElectroCar</Typography>
-          </Box>
-          <Box
-            sx={{ display: { xs: "block", md: "none" }, alignItems: "center" }}
-          >
-            <img
-              src={user.photoURL || avatar}
-              style={{
-                width: "50px",
-                borderRadius: "100%",
-                marginTop: "5px",
-                cursor: "pointer",
+            <Typography
+              sx={{
+                display: { xs: "none", md: "block" },
+                alignItems: "center",
               }}
-              onClick={handleOpen}
-              alt=""
-            />
+              variant="h4"
+            >
+              ElectroCar
+            </Typography>
           </Box>
           {isMobile ? (
             <React.Fragment>
@@ -105,14 +96,29 @@ const Navigation = (props) => {
                 }}
                 open={open}
               >
-                <MenuItem
-                  style={{ width: "100vw" }}
-                  onClick={() => setAnchor(null)}
-                >
-                  <ListItemIcon>
-                    <CloseSharp />
-                  </ListItemIcon>
-                </MenuItem>
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <MenuItem
+                    style={{ width: "100vw" }}
+                    onClick={() => setAnchor(null)}
+                  >
+                    <ListItemIcon>
+                      <CloseSharp />
+                    </ListItemIcon>
+                  </MenuItem>
+                  <MenuItem onClick={() => setAnchor(null)}>
+                    <img
+                      src={user.photoURL || avatar}
+                      style={{
+                        width: "50px",
+                        borderRadius: "100%",
+                        marginTop: "5px",
+                        cursor: "pointer",
+                      }}
+                      onClick={handleOpen}
+                      alt=""
+                    />
+                  </MenuItem>
+                </Box>
 
                 <MenuItem
                   onClick={() => setAnchor(null)}
