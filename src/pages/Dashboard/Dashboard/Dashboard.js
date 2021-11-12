@@ -32,6 +32,9 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AddReviews from "../AddReviews/AddReviews";
 import MyOrders from "../MyOrders/MyOrders";
 import useAuth from "../../../hook/useAuth";
+import AdminRoute from "../../Login/AdminRoute/AdminRoute";
+import PrivateRoute from "../../Login/PrivateRoute/PrivateRoute";
+import HomeIcon from "@mui/icons-material/Home";
 
 const drawerWidth = 240;
 
@@ -39,7 +42,7 @@ function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   let { path, url } = useRouteMatch();
-  const { logout } = useAuth();
+  const { logout, isAdmin } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -51,54 +54,71 @@ function Dashboard(props) {
       <Divider />
       <List>
         {/* list item 1  */}
-        <ListItem button component={Link} to={`${url}/myOrder`}>
+        <ListItem button component={Link} to={`/`}>
           <ListItemIcon sx={{ minWidth: 35 }}>
-            <BorderAllIcon />
+            <HomeIcon />
           </ListItemIcon>
-          <ListItemText primary="My Orders" />
+          <ListItemText primary="Home" />
         </ListItem>
-        {/* list item 3  */}
-        <ListItem button component={Link} to={`${url}/payment`}>
-          <ListItemIcon sx={{ minWidth: 35 }}>
-            <PaymentIcon />
-          </ListItemIcon>
-          <ListItemText primary="Make Payment" />
-        </ListItem>
-        {/* list item 3  */}
-        <ListItem button component={Link} to={`${url}/reviews`}>
-          <ListItemIcon sx={{ minWidth: 35 }}>
-            <ReviewsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Review" />
-        </ListItem>
+
+        {isAdmin || (
+          <Box>
+            <ListItem button component={Link} to={`${url}/myOrder`}>
+              <ListItemIcon sx={{ minWidth: 35 }}>
+                <BorderAllIcon />
+              </ListItemIcon>
+              <ListItemText primary="My Orders" />
+            </ListItem>
+
+            {/* list item 3  */}
+            <ListItem button component={Link} to={`${url}/payment`}>
+              <ListItemIcon sx={{ minWidth: 35 }}>
+                <PaymentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Make Payment" />
+            </ListItem>
+            {/* list item 3  */}
+            <ListItem button component={Link} to={`${url}/reviews`}>
+              <ListItemIcon sx={{ minWidth: 35 }}>
+                <ReviewsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Review" />
+            </ListItem>
+          </Box>
+        )}
+
         {/* list item 2  */}
-        <ListItem button component={Link} to={`${url}/make_admin`}>
-          <ListItemIcon sx={{ minWidth: 35 }}>
-            <AdminPanelSettingsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Make Admin" />
-        </ListItem>
-        {/* list item 2  */}
-        <ListItem button component={Link} to={`${url}/manage_order`}>
-          <ListItemIcon sx={{ minWidth: 35 }}>
-            <AppRegistrationIcon />
-          </ListItemIcon>
-          <ListItemText primary="Manage All Order" />
-        </ListItem>
-        {/* list item 2  */}
-        <ListItem button component={Link} to={`${url}/manage_user`}>
-          <ListItemIcon sx={{ minWidth: 35 }}>
-            <ManageAccountsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Manage AlL User" />
-        </ListItem>
-        {/* list item 2  */}
-        <ListItem button component={Link} to={`${url}/add_product`}>
-          <ListItemIcon sx={{ minWidth: 35 }}>
-            <AddTaskIcon />
-          </ListItemIcon>
-          <ListItemText primary="Add New Product" />
-        </ListItem>
+        {isAdmin && (
+          <Box>
+            <ListItem button component={Link} to={`${url}/make_admin`}>
+              <ListItemIcon sx={{ minWidth: 35 }}>
+                <AdminPanelSettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Make Admin" />
+            </ListItem>
+            {/* list item 2  */}
+            <ListItem button component={Link} to={`${url}/manage_order`}>
+              <ListItemIcon sx={{ minWidth: 35 }}>
+                <AppRegistrationIcon />
+              </ListItemIcon>
+              <ListItemText primary="Manage All Order" />
+            </ListItem>
+            {/* list item 2  */}
+            <ListItem button component={Link} to={`${url}/manage_user`}>
+              <ListItemIcon sx={{ minWidth: 35 }}>
+                <ManageAccountsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Manage AlL User" />
+            </ListItem>
+            {/* list item 2  */}
+            <ListItem button component={Link} to={`${url}/add_product`}>
+              <ListItemIcon sx={{ minWidth: 35 }}>
+                <AddTaskIcon />
+              </ListItemIcon>
+              <ListItemText primary="Add New Product" />
+            </ListItem>
+          </Box>
+        )}
         {/* list item 2  */}
         <ListItem button onClick={logout}>
           <ListItemIcon sx={{ minWidth: 35 }}>
@@ -194,13 +214,28 @@ function Dashboard(props) {
       >
         <Switch>
           <Route exact path={path} component={DashboardHome} />
-          <Route path={`${path}/myOrder`} component={MyOrders} />
-          <Route path={`${path}/make_admin`} component={MakeAdmin} />
-          <Route path={`${path}/add_product`} component={AddProduct} />
-          <Route path={`${path}/manage_order`} component={ManageOrder} />
-          <Route path={`${path}/manage_user`} component={ManageUser} />
-          <Route path={`${path}/payment`} component={MakePayment} />
-          <Route path={`${path}/reviews`} component={AddReviews} />
+          <PrivateRoute path={`${path}/myOrder`}>
+            <MyOrders></MyOrders>
+          </PrivateRoute>
+          <AdminRoute path={`${path}/make_admin`}>
+            <MakeAdmin></MakeAdmin>
+          </AdminRoute>
+          <AdminRoute path={`${path}/add_product`}>
+            <AddProduct></AddProduct>
+          </AdminRoute>
+          <AdminRoute path={`${path}/manage_order`}>
+            <ManageOrder></ManageOrder>
+          </AdminRoute>
+
+          <AdminRoute path={`${path}/manage_user`}>
+            <ManageUser></ManageUser>
+          </AdminRoute>
+          <PrivateRoute path={`${path}/payment`}>
+            <MakePayment></MakePayment>
+          </PrivateRoute>
+          <PrivateRoute path={`${path}/reviews`}>
+            <AddReviews></AddReviews>
+          </PrivateRoute>
         </Switch>
       </Box>
     </Box>

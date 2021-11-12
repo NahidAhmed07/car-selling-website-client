@@ -9,9 +9,9 @@ import {
 import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import swal from "sweetalert";
 import useAuth from "../../../hook/useAuth";
-import { useHistory } from "react-is";
 
 const fieldStyle = {
   width: "100%",

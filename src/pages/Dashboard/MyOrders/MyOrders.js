@@ -76,7 +76,7 @@ const MyOrders = () => {
       </Box>
 
       <Grid container spacing={4}>
-        {orders.length > 0 ? (
+        {orders.length >= 1 ? (
           orders.map((order) => (
             <Grid item xs={12} md={6} lg={4} key={order._id}>
               <Card sx={{ maxWidth: 345, textAlign: "left" }}>

@@ -21,6 +21,7 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [authError, setAuthError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   //##signIn using google
   const googleSignIn = (location, history) => {
@@ -32,7 +33,6 @@ const useFirebase = () => {
         const saveUser = {
           email: user.email,
           displayName: user.displayName,
-          role: "user",
         };
         saveToDatabase(saveUser, "PUT");
         history.push(location?.state?.from || "/");
@@ -110,8 +110,12 @@ const useFirebase = () => {
   //## logout
   const logout = () => {
     signOut(auth)
-      .then(() => setUser({}))
-      .catch((err) => setAuthError(err.message));
+      .then(() => {
+        setUser({});
+        setIsLoading(false);
+      })
+      .catch((err) => setAuthError(err.message))
+      .finally(() => setIsLoading(false));
   };
 
   //## user information sent to database
@@ -125,9 +129,7 @@ const useFirebase = () => {
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
       .catch((err) => console.log(err.message));
   };
 
@@ -149,9 +151,30 @@ const useFirebase = () => {
     return () => unsubscribe;
   }, [auth]);
 
+  // checkis admin
+  useEffect(() => {
+    if (user.email) {
+      setIsLoading(true);
+      fetch(`http://localhost:5000/admin?email=${user.email}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("idToken")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setIsAdmin(data.isAdmin);
+          console.log(data);
+        })
+        .catch((err) => console.log(err.message))
+        .finally(() => setIsLoading(false));
+    }
+  }, [user]);
+
+  console.log(isAdmin);
   return {
     user,
     setUser,
+    isAdmin,
     logout,
     googleSignIn,
     setAuthError,

@@ -30,7 +30,7 @@ const Reviews = () => {
         <Grid container spacing={5}>
           {reviews.length > 0 ? (
             reviews.map((review) => (
-              <Grid item xs={12} md={6} lg={4}>
+              <Grid item xs={12} md={6} lg={4} key={review._id}>
                 <Box
                   sx={{ position: "relative", pb: 5, borderRadius: "5px" }}
                   className="test-card"

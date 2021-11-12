@@ -51,6 +51,7 @@ const Register = () => {
       registerWithEmail(email, password, displayName, location, history);
     } else {
       setAuthError("password and Confirm password not matched");
+      setIsLoading(false);
     }
     e.preventDefault();
   };
