@@ -54,9 +54,11 @@ const Reviews = () => {
                       {review.title}
                     </Typography>
                     <h6>
-                      {[...Array(5).keys()].map((index) => (
-                        <StarIcon key={index} className="star-icon" />
-                      ))}
+                      {[...Array(parseInt(review.rating)).keys()].map(
+                        (index) => (
+                          <StarIcon key={index} className="star-icon" />
+                        )
+                      )}
                     </h6>
                     <Typography variant="body1" sx={{ mb: 4 }}>
                       {review.des}
