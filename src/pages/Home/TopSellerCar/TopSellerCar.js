@@ -8,9 +8,11 @@ const TopSellerCar = () => {
   const [topCar, setTopCar] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/topCar").then((res) => {
-      setTopCar(res.data);
-    });
+    axios
+      .get("https://fierce-forest-16777.herokuapp.com/topCar")
+      .then((res) => {
+        setTopCar(res.data);
+      });
   }, []);
 
   return (

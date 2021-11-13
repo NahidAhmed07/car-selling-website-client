@@ -105,7 +105,7 @@ const MyOrders = () => {
                         {[...Array(parseInt(4)).keys()].map((index) => (
                           <StarIcon sx={ratingStyle} key={index} />
                         ))}{" "}
-                        ({12} reviews)
+                        (12)
                       </Typography>
                     </Box>
                     <Typography variant="body1" color="text.secondary">

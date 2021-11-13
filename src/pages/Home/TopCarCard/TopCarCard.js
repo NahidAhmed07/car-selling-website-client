@@ -13,7 +13,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 const TopCarCard = ({ product }) => {
   const { img, title, price, year, speed } = product;
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card style={{ margin: "0 auto" }} sx={{ maxWidth: 345 }}>
       <CardMedia
         className="card-img"
         component="img"
