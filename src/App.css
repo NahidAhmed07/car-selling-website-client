@@ -37,3 +37,17 @@ textarea {
 textarea:focus {
   outline: none;
 }
+
+.top_red-box {
+  width: 35px;
+  height: 3px;
+  display: block;
+  margin: 5px auto;
+  background: #df3255;
+}
+.card-img {
+  transition: 0.4s;
+}
+.card-img:hover {
+  transform: scale(1.07);
+}

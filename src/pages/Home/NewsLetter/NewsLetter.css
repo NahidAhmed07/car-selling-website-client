@@ -1,0 +1,30 @@
+.news-letter {
+  height: 400px;
+  background-image: url("https://klbtheme.com/harrier/wp-content/uploads/2019/05/newsletter-bg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: "white";
+}
+
+.news-btn {
+  height: 72px;
+  border: none;
+  margin-left: 4px;
+  padding: 0 20px;
+  align-items: center;
+  display: flex;
+  transition: 0.3s;
+  border-radius: 3px;
+  background: rgb(243, 221, 23);
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Saira Condensed";
+}
+
+.news-btn:hover {
+  background: rgb(231, 212, 40);
+}

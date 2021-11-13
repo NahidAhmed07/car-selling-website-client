@@ -33,30 +33,6 @@ const ManageProduct = ({ url }) => {
       .catch((err) => console.log(err.message));
   }, []);
 
-  const handleApproved = (id) => {
-    axios
-      .put(`https://fierce-forest-16777.herokuapp.com/order?id=${id}`)
-      .then((res) => {
-        if (res.data.modifiedCount > 0) {
-          const findItem = products.find((product) => product._id === id);
-          if (findItem) {
-            findItem.status = "approved";
-            const remaining = products.filter(
-              (product) => !(product._id === id)
-            );
-
-            setProducts([findItem, ...remaining]);
-          }
-        } else {
-          swal({
-            title: "This Service Already Approved !",
-            icon: "warning",
-          });
-        }
-      })
-      .catch((err) => console.log(err.massage));
-  };
-
   const handleDelete = (id) => {
     swal({
       title: "Are you sure?",

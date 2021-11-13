@@ -66,6 +66,7 @@ const Navigation = (props) => {
                 display: { xs: "none", md: "block" },
                 alignItems: "center",
               }}
+              style={{ fontFamily: "Saira Condensed" }}
               variant="h4"
             >
               ElectroCar

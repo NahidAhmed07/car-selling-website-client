@@ -13,6 +13,7 @@ import { useHistory, useParams } from "react-router";
 import Navigation from "../../shared/Navigation/Navigation";
 import StarIcon from "@mui/icons-material/Star";
 import swal from "sweetalert";
+import Footer from "../../shared/Footer/Footer";
 import useAuth from "../../../hook/useAuth";
 
 const ratingStyle = {
@@ -85,7 +86,7 @@ const BuyProduct = () => {
     <div style={{ paddingTop: "70px", textAlign: "left" }}>
       <Navigation></Navigation>
 
-      <Container>
+      <Container sx={{ mb: 8 }}>
         <Box sx={{ my: 8, borderBottom: "3px solid goldenrod", pb: 2 }}>
           <Typography sx={{ fontWeight: "bold" }} variant="h3">
             Confirm your Order
@@ -187,6 +188,7 @@ const BuyProduct = () => {
           </Grid>
         </Grid>
       </Container>
+      <Footer></Footer>
     </div>
   );
 };

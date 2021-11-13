@@ -148,7 +148,6 @@ const ManageOrder = () => {
                   >
                     <CircularProgress />
                   </Box>
-                  );
                 </Grid>
               )}
             </TableBody>

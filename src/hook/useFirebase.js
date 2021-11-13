@@ -166,14 +166,12 @@ const useFirebase = () => {
         .then((res) => res.json())
         .then((data) => {
           setIsAdmin(data.isAdmin);
-          console.log(data);
         })
         .catch((err) => console.log(err.message))
         .finally(() => setIsLoading(false));
     }
   }, [user.email]);
 
-  console.log(isAdmin);
   return {
     user,
     setUser,

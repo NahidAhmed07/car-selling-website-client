@@ -17,6 +17,7 @@ import { NavLink, useLocation, useHistory } from "react-router-dom";
 import loginImg from "../../../images/login.jpg";
 import useAuth from "../../../hook/useAuth";
 import Navigation from "../../shared/Navigation/Navigation";
+import Footer from "../../shared/Footer/Footer";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -122,6 +123,7 @@ const Login = () => {
           </Grid>
         </Grid>
       </Container>
+      <Footer></Footer>
     </>
   );
 };

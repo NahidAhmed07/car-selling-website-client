@@ -17,8 +17,8 @@ const ProductCard = ({ product }) => {
   const { img, productName, price, description, rating, _id } = product;
   return (
     <Card
-      style={{ margin: "0 auto" }}
-      sx={{ maxWidth: 345, textAlign: "left" }}
+      style={{ margin: "0 auto", fontFamily: "Saira Condensed" }}
+      sx={{ maxWidth: 345, textAlign: "left", fontFamily: "Saira Condensed" }}
     >
       <CardActionArea>
         <CardMedia
@@ -26,9 +26,15 @@ const ProductCard = ({ product }) => {
           height="200"
           image={img}
           alt="green iguana"
+          className="card-img"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography
+            gutterBottom
+            variant="h5"
+            style={{ fontFamily: "Saira Condensed" }}
+            component="div"
+          >
             {productName}
           </Typography>
           <Box
@@ -38,7 +44,12 @@ const ProductCard = ({ product }) => {
               alignItems: "center",
             }}
           >
-            <Typography variant="h6" gutterBottom component="h3">
+            <Typography
+              variant="h5"
+              gutterBottom
+              component="h3"
+              style={{ fontFamily: "Saira Condensed" }}
+            >
               $ {price}
             </Typography>
             <Typography variant="body1">
