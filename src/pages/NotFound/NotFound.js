@@ -14,9 +14,12 @@ const NotFound = () => {
     >
       <Container style={{ minHeight: "100vh" }}>
         <Grid container>
-          <Grid xs={12} md={8} sx={{ textAlign: "center" }}>
+          <Grid item xs={12} md={8}>
             <Box
-              sx={{ mt: { xs: 1, md: 5 }, pt: { xs: 1, md: 4 } }}
+              sx={{
+                mt: { xs: 1, md: 5 },
+                pt: { xs: 1, md: 4 },
+              }}
               className="serviceOne"
             >
               <Typography

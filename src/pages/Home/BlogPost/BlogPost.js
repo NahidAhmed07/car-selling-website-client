@@ -13,7 +13,6 @@ const BlogPost = () => {
     });
   }, []);
 
-  console.log(blogs);
   return (
     <Container sx={{ my: 8 }}>
       <Box sx={{ my: 8, borderBottom: "3px solid goldenrod", pb: 2 }}>

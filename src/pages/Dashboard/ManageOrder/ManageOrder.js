@@ -21,11 +21,11 @@ const ManageOrder = () => {
       .get("https://fierce-forest-16777.herokuapp.com/order")
       .then((res) => {
         setOrders(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err.message));
   }, []);
 
+  // handle order status change function
   const handleApproved = (id) => {
     axios
       .put(`https://fierce-forest-16777.herokuapp.com/order?id=${id}`)
@@ -48,7 +48,9 @@ const ManageOrder = () => {
       .catch((err) => console.log(err.massage));
   };
 
+  // delete user order function
   const handleDelete = (id) => {
+    // before delete alert
     swal({
       title: "Are you sure?",
       text: "Delete This Order form Order list",
@@ -63,8 +65,8 @@ const ManageOrder = () => {
             console.log(res.data);
             if (res.data.deletedCount > 0) {
               const remaining = orders.filter((order) => !(order._id === id));
-
               setOrders(remaining);
+              // delete success alert
               swal("Poof! Your imaginary file has been deleted!", {
                 icon: "success",
               });

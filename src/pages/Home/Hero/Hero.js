@@ -6,11 +6,22 @@ import { imageArray } from "../../../utilities/utilities";
 import "./Hero.css";
 
 const Hero = () => {
+  /*
+  useCounter hook is my own creation . this hook create for making hero section background images slider ...this hook return a counter state that update every 4 second . And this hook receive two parameter 
+  (1) counter start index 
+  (2) counter end index
+  
+  background image change a simple array method this counter change the array index value then slider image is automatically change ... 
+  ####### happy Coding #########
+  
+  */
   const [counter] = useCounter(0, imageArray.length);
   const heroBannerStyle = {
     backgroundImage: `url(${imageArray[counter]})`,
     transition: "all 1.5s ease",
   };
+
+  //#######################################################################
 
   const textBoxStyle = {
     height: "100%",

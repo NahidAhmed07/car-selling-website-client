@@ -83,7 +83,6 @@ const Reviews = () => {
               >
                 <CircularProgress />
               </Box>
-              );
             </Grid>
           )}
         </Grid>

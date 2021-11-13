@@ -13,6 +13,7 @@ const AddProduct = () => {
   const [productInfo, setProductInfo] = useState({});
   const [isAdding, setIsAdding] = useState(false);
 
+  // get all input value
   const handleOnBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
@@ -21,8 +22,10 @@ const AddProduct = () => {
     setProductInfo(newData);
   };
 
+  // handle on submit function
   const handleSubmit = (e) => {
     setIsAdding(true);
+    //check img url is Valid
     if (!productInfo?.img?.includes("http")) {
       productInfo.img = "https://i.ibb.co/gRmyzYn/imgNot.png";
     }

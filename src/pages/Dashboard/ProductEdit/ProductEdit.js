@@ -19,6 +19,7 @@ const ProductEdit = () => {
   const { register, handleSubmit, setValue, reset } = useForm();
   const history = useHistory();
 
+  // product data load to database
   useEffect(() => {
     axios
       .get(`https://fierce-forest-16777.herokuapp.com/product/single/${id}`)
@@ -30,12 +31,14 @@ const ProductEdit = () => {
 
   const { productName, img, description, price, rating } = product;
 
+  // set all field default value using react-hook-form setValue function
   setValue("productName", productName);
   setValue("img", img);
   setValue("description", description);
   setValue("price", price);
   setValue("rating", rating);
 
+  // handle onSubmit function
   const onSubmit = (data) => {
     console.log(data);
     axios
@@ -46,6 +49,7 @@ const ProductEdit = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data?.modifiedCount > 0) {
+          // reset form
           reset();
           history.goBack();
           swal(`Successful`, "product Successfully Updated", "success");

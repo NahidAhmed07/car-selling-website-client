@@ -33,6 +33,7 @@ const ManageProduct = ({ url }) => {
       .catch((err) => console.log(err.message));
   }, []);
 
+  // handle delete function
   const handleDelete = (id) => {
     swal({
       title: "Are you sure?",
@@ -90,7 +91,7 @@ const ManageProduct = ({ url }) => {
                     <TableRow key={product._id}>
                       <TableCell align="left">{index + 1}</TableCell>
                       <TableCell align="left">{product.productName}</TableCell>
-                      <TableCell align="left">{product.price}</TableCell>
+                      <TableCell align="left">$ {product.price}</TableCell>
                       <TableCell align="left">
                         <Typography variant="body1">
                           {[...Array(parseInt(product.rating)).keys()].map(

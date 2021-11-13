@@ -34,9 +34,12 @@ const useFirebase = () => {
           email: user.email,
           displayName: user.displayName,
         };
+        // save user information to database
         saveToDatabase(saveUser, "PUT");
-        history.push(location?.state?.from || "/");
+        // redirect to
+        history.push(location?.state?.from || "/dashboard");
         setAuthError("");
+        // alert login success message
         swal(`Hi ! ${user.displayName}`, "Successfully Login", "success");
       })
       .catch((err) => {
@@ -45,7 +48,7 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
-  //## register user
+  //## register new user with email and password
   const registerWithEmail = (
     email,
     password,
@@ -63,11 +66,13 @@ const useFirebase = () => {
         // user set local state
         const newUser = { email, displayName, role: "user" };
         setUser(newUser);
+        // save user information to database
         saveToDatabase(newUser, "POST");
-        history.push(location?.state?.from || "/");
+        history.push(location?.state?.from || "/dashboard");
         swal(`Hi ! ${displayName}`, "Registration Successful", "success");
       })
       .catch((error) => {
+        //alert error message
         setAuthError(error.message);
         swal(`Registration Failed !`, error.message, "error");
       })
@@ -90,12 +95,15 @@ const useFirebase = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         setUser(user);
-        history.push(location?.state?.from || "/");
+        //redirect to
+        history.push(location?.state?.from || "/dashboard");
+        // alert success message
         swal(`Hi ! ${user.displayName}`, "Successfully Login", "success");
         setAuthError("");
       })
       .catch((error) => {
         setAuthError(error.message);
+        // check error type and then alert with error message
         if (error?.message.includes("user-not-found")) {
           setAuthError("User not Found");
           swal(`Login Failed !`, "User not Found", "error");
@@ -118,7 +126,7 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
-  //## user information sent to database
+  //## user information sent to database function
   const saveToDatabase = (user, method) => {
     user.createdAt = new Date();
     fetch("https://fierce-forest-16777.herokuapp.com/users", {
@@ -139,6 +147,7 @@ const useFirebase = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        // get user jwt token
         getIdToken(user).then((idToken) => {
           localStorage.setItem("idToken", idToken);
         });
@@ -151,7 +160,7 @@ const useFirebase = () => {
     return () => unsubscribe;
   }, [auth]);
 
-  // checkis admin
+  // check is admin
   useEffect(() => {
     if (user.email) {
       setIsLoading(true);

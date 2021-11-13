@@ -25,6 +25,7 @@ const AddReviews = () => {
   const { user } = useAuth();
   const history = useHistory();
 
+  //get all input value
   const handleOnBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
@@ -33,6 +34,7 @@ const AddReviews = () => {
     setReviewData(newData);
   };
 
+  // handle form submit
   const handleSubmit = (e) => {
     setIsAdding(true);
     reviewData.title = user.displayName;
@@ -55,6 +57,7 @@ const AddReviews = () => {
       });
     e.preventDefault();
   };
+
   return (
     <Box sx={{ textAlign: "left", mr: { xs: 0, md: 2, lg: 5, xl: 8 } }}>
       <Box sx={{ my: 5, borderBottom: "3px solid goldenrod", pb: 2 }}>

@@ -24,6 +24,7 @@ const AllProduct = ({ apiPath }) => {
         </Box>
         <Grid container spacing={4}>
           {products.length < 1 ? (
+            // loading spinner make center
             <Grid item xs={12}>
               <Box
                 sx={{

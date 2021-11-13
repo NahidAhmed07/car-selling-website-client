@@ -50,6 +50,7 @@ function Dashboard(props) {
 
   const drawer = (
     <div>
+      {/* app bar navigation  */}
       <Toolbar />
       <Divider />
       <List>

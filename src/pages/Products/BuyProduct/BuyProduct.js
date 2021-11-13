@@ -34,6 +34,7 @@ const BuyProduct = () => {
   const { user } = useAuth();
   const history = useHistory();
 
+  // get all input value
   const handleOnBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
@@ -42,6 +43,7 @@ const BuyProduct = () => {
     setOrderInfo(newData);
   };
 
+  // handle onsubmit function
   const handleSubmit = (e) => {
     setIsAdding(true);
     orderInfo.name = user.displayName;

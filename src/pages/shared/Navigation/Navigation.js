@@ -72,6 +72,8 @@ const Navigation = (props) => {
               ElectroCar
             </Typography>
           </Box>
+
+          {/* mobile view  */}
           {isMobile ? (
             <React.Fragment>
               <IconButton
@@ -173,7 +175,12 @@ const Navigation = (props) => {
               >
                 Explore Car
               </Button>
-              <Button variant="text" component={Link} to="/" style={navItem}>
+              <Button
+                variant="text"
+                component={Link}
+                to="/about"
+                style={navItem}
+              >
                 About
               </Button>
               {user.email ? (
@@ -208,6 +215,7 @@ const Navigation = (props) => {
         </Toolbar>
       </AppBar>
 
+      {/* user information modal  */}
       <UserModal open={modalOpen} handleClose={handleClose}></UserModal>
     </div>
   );
